@@ -1,0 +1,130 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: #60a5fa;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.backLink:hover {
+  color: #93c5fd;
+  transform: translateX(-4px);
+}
+
+.card {
+  background: #111111;
+  border-radius: 16px;
+  border: 1px solid #333;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #333;
+}
+
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.headerInfo {
+  flex: 1;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.netWorth {
+  font-size: 1.5rem;
+  color: #10b981;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.industries {
+  color: #9ca3af;
+  font-size: 1.125rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.about {
+  color: #d1d5db;
+  line-height: 1.7;
+}
+
+.about p {
+  margin-bottom: 1rem;
+}
+
+.assetsGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.assetCard {
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #1a1a1a;
+}
+
+.assetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assetInfo h3 {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.assetInfo p {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.assetStats {
+  text-align: right;
+}
+
+.assetStats p:first-child {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.assetStats p:last-child {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
