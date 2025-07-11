@@ -35,35 +35,47 @@ async function BillionaireInfo({ id }: { id: string }) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <Image
-          src={billionaire.squareImage}
-          alt={billionaire.name}
-          width={128}
-          height={128}
-          className={styles.avatar}
-          unoptimized
-        />
+        {billionaire?.squareImage &&
+        billionaire.squareImage !== "" &&
+        billionaire.squareImage !== "undefined" &&
+        !billionaire.squareImage.includes("undefined") ? (
+          <Image
+            src={billionaire.squareImage}
+            alt={billionaire?.name || "이름 없음"}
+            width={128}
+            height={128}
+            className={styles.avatar}
+            unoptimized
+            style={{ width: "auto", height: "auto" }}
+          />
+        ) : (
+          <div className={styles.noAvatar}>
+            {billionaire?.name?.charAt(0)?.toUpperCase() || "?"}
+          </div>
+        )}
         <div className={styles.headerInfo}>
-          <h1 className={styles.name}>{billionaire.name}</h1>
+          <h1 className={styles.name}>{billionaire?.name || "이름 없음"}</h1>
           <p className={styles.netWorth}>
-            ${(billionaire.netWorth / 1000).toFixed(1)} Billions
+            ${(billionaire?.netWorth / 1000).toFixed(1)} Billions
           </p>
           <p className={styles.industries}>
-            {billionaire.industries.join(", ")}
+            {billionaire?.industries?.join(", ") || "정보 없음"}
           </p>
         </div>
       </div>
 
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>소개</h2>
-        <div className={styles.about}>
-          {billionaire.about.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+      {billionaire?.about && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>소개</h2>
+          <div className={styles.about}>
+            {billionaire.about.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      {billionaire.financialAssets.length > 0 && (
+      {billionaire?.financialAssets?.length > 0 && (
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>주요 자산</h2>
           <div className={styles.assetsGrid}>
@@ -71,14 +83,15 @@ async function BillionaireInfo({ id }: { id: string }) {
               <div key={index} className={styles.assetCard}>
                 <div className={styles.assetHeader}>
                   <div className={styles.assetInfo}>
-                    <h3>{asset.companyName}</h3>
+                    <h3>{asset?.companyName || "회사명 없음"}</h3>
                     <p>
-                      {asset.exchange}: {asset.ticker}
+                      {asset?.exchange || "거래소 없음"}:{" "}
+                      {asset?.ticker || "티커 없음"}
                     </p>
                   </div>
                   <div className={styles.assetStats}>
-                    <p>{asset.numberOfShares.toLocaleString()} 주</p>
-                    <p>${asset.sharePrice.toLocaleString()}</p>
+                    <p>{asset?.numberOfShares?.toLocaleString() || 0} 주</p>
+                    <p>${asset?.sharePrice?.toLocaleString() || 0}</p>
                   </div>
                 </div>
               </div>

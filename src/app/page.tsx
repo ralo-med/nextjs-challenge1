@@ -18,6 +18,17 @@ async function getBillionaires(): Promise<Billionaire[]> {
 export default async function Home() {
   const billionaires = await getBillionaires();
 
+  // 디버깅용 로그
+  console.log(
+    "Billionaires data:",
+    billionaires.map((b) => ({
+      name: b.name,
+      squareImage: b.squareImage,
+      hasImage: !!b.squareImage,
+      imageType: typeof b.squareImage,
+    }))
+  );
+
   return (
     <div className={styles.grid}>
       {billionaires.map((billionaire) => (
@@ -27,22 +38,32 @@ export default async function Home() {
           className={styles.card}
         >
           <div className={styles.imageContainer}>
-            <Image
-              src={billionaire.squareImage}
-              alt={billionaire.name}
-              width={240}
-              height={180}
-              className={styles.image}
-              unoptimized
-            />
+            {billionaire?.squareImage &&
+            billionaire.squareImage !== "" &&
+            billionaire.squareImage !== "undefined" &&
+            !billionaire.squareImage.includes("undefined") ? (
+              <Image
+                src={billionaire.squareImage}
+                alt={billionaire?.name || "이름 없음"}
+                width={240}
+                height={180}
+                className={styles.image}
+                unoptimized
+                style={{ width: "auto", height: "auto" }}
+              />
+            ) : (
+              <div className={styles.noImage}>
+                {billionaire?.name?.charAt(0)?.toUpperCase() || "?"}
+              </div>
+            )}
           </div>
           <div className={styles.info}>
             <h2 className={styles.name}>{billionaire.name}</h2>
             <p className={styles.netWorth}>
-              ${(billionaire.netWorth / 1000).toFixed(1)} Billions
+              ${(billionaire?.netWorth / 1000).toFixed(1)} Billions
             </p>
             <p className={styles.industries}>
-              {billionaire.industries.join(", ")}
+              {billionaire?.industries?.join(", ") || "정보 없음"}
             </p>
           </div>
         </Link>
